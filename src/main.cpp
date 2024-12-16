@@ -42,7 +42,7 @@ void Main::setup(void)
     esp_event_loop_create_default();
     nvs_flash_init();
 
-    Wifi.SetCredentials("your_ssid", "Your_passsword");
+    Wifi.SetCredentials("TP-Link_8020", "50824823");
     Wifi.Init();
 }
 
