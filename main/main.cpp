@@ -42,8 +42,9 @@ void Main::setup(void)
     esp_event_loop_create_default();
     nvs_flash_init();
 
-    Wifi.SetCredentials("TP-Link_8020", "50824823");
+    Wifi.SetCredentials("Saeid", "12345678");
     Wifi.Init();
+    
 }
 
 extern "C" void app_main(void)
