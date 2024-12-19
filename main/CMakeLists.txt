@@ -1,5 +1,5 @@
 set(SOURCES main.cpp
-            wifi.cpp)
+            wifi.cpp mqtt.cpp)
             
 idf_component_register(SRCS ${SOURCES}
                     INCLUDE_DIRS .  ../include
