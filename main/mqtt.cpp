@@ -23,6 +23,7 @@ void PubSubClient::mqtt_event_handler(void *handler_args, esp_event_base_t base,
             break;
         case MQTT_EVENT_ERROR:
             std::cout << "MQTT_EVENT_ERROR\n";
+            // esp_mqtt_client_reconnect(event);
             break;
         default:
             std::cout << "Unhandled MQTT event: " << event->event_id << "\n";
@@ -68,4 +69,20 @@ static esp_mqtt_client_handle_t mqtt_client; // Handle for the MQTT client
         
     return ESP_OK; // Ensure function has a return statement
 
+}
+
+esp_err_t PubSubClient::publish(const char* topic, const char* message, int qos, bool retain) {
+    if (mqtt_client == nullptr) {
+        std::cout << "MQTT client is not initialized." << std::endl;
+        return ESP_FAIL;
+    }
+
+    int msg_id = esp_mqtt_client_publish(mqtt_client, topic, message, strlen(message), qos, retain);
+    if (msg_id == -1) {
+        std::cout << "Failed to publish message." << std::endl;
+        return ESP_FAIL;
+    }
+
+    std::cout << "Message published with ID: " << msg_id << std::endl;
+    return ESP_OK;
 }

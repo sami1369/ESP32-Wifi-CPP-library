@@ -7,6 +7,8 @@ class PubSubClient{
    public: 
 //    PubSubClient();
    esp_err_t init();
+   esp_err_t publish(const char* topic, const char* message, int qos = 0, bool retain = false);
+
 
    private:
    // Define the static member variable

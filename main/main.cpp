@@ -59,9 +59,16 @@ extern "C" void app_main(void) {
 
     mqttClient.init();
 
+    // mqttClient.subscribe("test/topic", 1);
+
+    mqttClient.publish("test/topic", "Hello, MQTT!", 1, false);
+
+
     while (true) {
-    vTaskDelay(pdMS_TO_TICKS(10000));
+    vTaskDelay(pdMS_TO_TICKS(5000));
     App.run();
+    mqttClient.publish("test/topic", "Hello, MQTT!", 1, false);
+
 
    }
 }
